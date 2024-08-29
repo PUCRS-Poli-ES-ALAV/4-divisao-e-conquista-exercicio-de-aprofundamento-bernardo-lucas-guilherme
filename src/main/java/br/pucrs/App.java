@@ -65,8 +65,8 @@ public class App {
         return mergeCount;
     }
 
-    long maxVal1(long A[], int n) {
-        long max = A[0];
+    double maxVal1(double A[], int n) {
+        double max = A[0];
         for (int i = 1; i < n; i++) {
             if (A[i] > max) {
                 max = A[i];
@@ -80,14 +80,14 @@ public class App {
         return maxVal1Count;
     }
 
-    long maxVal2(long A[], int init, int end) {
+    double maxVal2(double A[], int init, int end) {
         maxVal2Count++;
         if (end - init <= 1) {
             return Math.max(A[init], A[end]);
         } else {
             int m = (init + end) / 2;
-            long v1 = maxVal2(A, init, m);
-            long v2 = maxVal2(A, m + 1, end);
+            double v1 = maxVal2(A, init, m);
+            double v2 = maxVal2(A, m + 1, end);
             return Math.max(v1, v2);
         }
     }
@@ -95,4 +95,50 @@ public class App {
     public int getmaxVal2Count() {
         return maxVal2Count;
     }
+
+    public static double muliply(double x, double y, double n ) {
+        if (n == 1 ) {
+            return (x) * (y);
+        }
+
+        double m = n / 2;
+        double a = ((x) / Math.pow(2.0, (double)m));
+        double b = ((x) % Math.pow(2.0, (double)m));
+        double c = ((y) / Math.pow(2.0, (double)m));
+        double d = ((y) % Math.pow(2.0, (double)m));
+
+
+        double e = muliply(a, c, m);
+        double f = muliply(b, d, m);
+        double g = muliply(b, c, m);
+        double h = muliply(a, d, m);
+
+
+        return (double) ((Math.pow(2.0, 2 * (double) m) * e) + (Math.pow(2.0, (double) m) * (g + h) + f));
+    }
+
+    // MULTIPLY(x, y, n) 
+//    IF (n = 1)
+//       RETURN x * y.
+//    ELSE
+//       m ← ⎡ n / 2 ⎤.
+//       a ← ⎣ x / 2^m ⎦; b ← x mod 2^m.
+//       c ← ⎣ y / 2^m ⎦; d ← y mod 2^m.
+//       e ← MULTIPLY(a, c, m).
+//       f ← MULTIPLY(b, d, m).
+//       g ← MULTIPLY(b, c, m).
+//       h ← MULTIPLY(a, d, m).
+//       RETURN 2^(2m)*e + 2^m*(g + h) + f.
+
+
+
+
+
+
+
+
 }
+
+
+
+
