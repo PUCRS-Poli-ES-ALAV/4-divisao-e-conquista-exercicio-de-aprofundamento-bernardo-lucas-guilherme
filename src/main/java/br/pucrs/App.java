@@ -96,25 +96,25 @@ public class App {
         return maxVal2Count;
     }
 
-    public static double muliply(double x, double y, double n ) {
+    public static long muliply(long x, long y, int n ) {
         if (n == 1 ) {
-            return (x) * (y);
+            return x * y;
         }
 
-        double m = n / 2;
-        double a = ((x) / Math.pow(2.0, (double)m));
-        double b = ((x) % Math.pow(2.0, (double)m));
-        double c = ((y) / Math.pow(2.0, (double)m));
-        double d = ((y) % Math.pow(2.0, (double)m));
+        int m = (int) Math.ceil(n / 2.0);
+        long a = (long) ((x) / Math.pow(2.0, m));
+        long b = (long) ((x) % Math.pow(2.0, m));
+        long c = (long) ((y) / Math.pow(2.0, m));
+        long d = (long) ((y) % Math.pow(2.0, m));
 
 
-        double e = muliply(a, c, m);
-        double f = muliply(b, d, m);
-        double g = muliply(b, c, m);
-        double h = muliply(a, d, m);
+        long e = muliply(a, c, m);
+        long f = muliply(b, d, m);
+        long g = muliply(b, c, m);
+        long h = muliply(a, d, m);
 
 
-        return (double) ((Math.pow(2.0, 2 * (double) m) * e) + (Math.pow(2.0, (double) m) * (g + h) + f));
+        return (long) ((Math.pow(2, 2*m) * e) + (Math.pow(2, m) * (g + h) + f));
     }
 
     // MULTIPLY(x, y, n) 

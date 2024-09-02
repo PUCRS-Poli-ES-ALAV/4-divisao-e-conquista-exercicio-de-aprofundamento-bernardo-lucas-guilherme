@@ -26,8 +26,8 @@ public class Main {
         System.out.println("\n\n");
         System.out.println(app.getMergeCount());
 
-        double x = 15;
-        double y = 15;
+        long x = 15;
+        long y = 15;
         System.out.println(app.muliply(x, y, 2));
 
 
