@@ -33,7 +33,7 @@ public class App {
         while (i < leftList.size() && j < rightList.size()) {
             if (leftList.get(i) < rightList.get(j)) {
                 list.set(k, leftList.get(i));
-                /*copying sorted elements into list*/
+                /* copying sorted elements into list */
                 i++;
                 k++;
             } else {
@@ -44,7 +44,7 @@ public class App {
             mergeCount++;
         }
 
-        /*copying remaining elements into list*/
+        /* copying remaining elements into list */
         while (i < leftList.size()) {
             list.set(k, leftList.get(i));
             i++;
@@ -96,8 +96,8 @@ public class App {
         return maxVal2Count;
     }
 
-    public static long muliply(long x, long y, int n ) {
-        if (n == 1 ) {
+    public long muliply(long x, long y, int n) {
+        if (n == 1) {
             return x * y;
         }
 
@@ -107,38 +107,68 @@ public class App {
         long c = (long) ((y) / Math.pow(2.0, m));
         long d = (long) ((y) % Math.pow(2.0, m));
 
-
         long e = muliply(a, c, m);
         long f = muliply(b, d, m);
         long g = muliply(b, c, m);
         long h = muliply(a, d, m);
 
-
-        return (long) ((Math.pow(2, 2*m) * e) + (Math.pow(2, m) * (g + h) + f));
+        return (long) ((Math.pow(2, 2 * m) * e) + (Math.pow(2, m) * (g + h) + f));
     }
 
-    // MULTIPLY(x, y, n) 
-//    IF (n = 1)
-//       RETURN x * y.
-//    ELSE
-//       m ← ⎡ n / 2 ⎤.
-//       a ← ⎣ x / 2^m ⎦; b ← x mod 2^m.
-//       c ← ⎣ y / 2^m ⎦; d ← y mod 2^m.
-//       e ← MULTIPLY(a, c, m).
-//       f ← MULTIPLY(b, d, m).
-//       g ← MULTIPLY(b, c, m).
-//       h ← MULTIPLY(a, d, m).
-//       RETURN 2^(2m)*e + 2^m*(g + h) + f.
+    // MULTIPLY(x, y, n)
+    // IF (n = 1)
+    // RETURN x * y.
+    // ELSE
+    // m ← ⎡ n / 2 ⎤.
+    // a ← ⎣ x / 2^m ⎦; b ← x mod 2^m.
+    // c ← ⎣ y / 2^m ⎦; d ← y mod 2^m.
+    // e ← MULTIPLY(a, c, m).
+    // f ← MULTIPLY(b, d, m).
+    // g ← MULTIPLY(b, c, m).
+    // h ← MULTIPLY(a, d, m).
+    // RETURN 2^(2m)*e + 2^m*(g + h) + f.
 
+    public long multiplyString(String x, String y) {
 
+        int n = Math.max(x.length(), y.length());
 
+        x = padLeft(x, n);
+        y = padLeft(y, n);
 
+        return multiply(x, y, n);
 
+    }
 
+    private String padLeft(String str, int length) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = str.length(); i < length; i++) {
+            sb.append('0');
+        }
+        sb.append(str);
+        return sb.toString();
+    }
 
+    private long multiply(String x, String y, int n) {
+
+        if (n == 1) {
+            return Long.parseLong(String.valueOf(x.charAt(0)), 2) * Long.parseLong(String.valueOf(y.charAt(0)), 2);
+
+        }
+            int m = (int) Math.ceil(n / 2.0);
+            String X1 = x.substring(0, m);
+            String X0 = x.substring(m);
+            String Y1 = y.substring(0, m);
+            String Y0 = y.substring(m);
+
+            long e = multiply(X1, Y1, m);
+            long f = multiply(X0, Y0, m);
+            long g = multiply(X0, Y1, m);
+            long h = multiply(X1, Y0, m);
+
+            return (long) ((Math.pow(2, 2 * m) * e) + (Math.pow(2, m) * (g + h) + f));
+
+        
+
+    }
 
 }
-
-
-
-

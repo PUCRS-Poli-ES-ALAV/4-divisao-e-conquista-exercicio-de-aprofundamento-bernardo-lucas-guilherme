@@ -30,6 +30,9 @@ public class Main {
         long y = 15;
         System.out.println(app.muliply(x, y, 2));
 
+        String a = "0010";
+        String b = "0010";
+        System.out.println(app.multiplyString(a, b));
 
     }
 }
